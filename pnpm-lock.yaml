@@ -14,6 +14,9 @@ importers:
       '@supabase/supabase-js':
         specifier: latest
         version: 2.45.1
+      modern-normalize:
+        specifier: ^3.0.0
+        version: 3.0.0
       next:
         specifier: latest
         version: 14.2.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -981,6 +984,10 @@ packages:
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
+
+  modern-normalize@3.0.0:
+    resolution: {integrity: sha512-oY2uocgMUQC33i5rKZMWzhyJ+U2nsoiHDYyoDVFxYVBob8RIjZoCbRSbE4+a2/SfbGmZOhOJIavLrzz3BC72tw==}
+    engines: {node: '>=6'}
 
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
@@ -2570,6 +2577,8 @@ snapshots:
   minimist@1.2.8: {}
 
   minipass@7.1.2: {}
+
+  modern-normalize@3.0.0: {}
 
   ms@2.1.2: {}
 
