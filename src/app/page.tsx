@@ -1,6 +1,6 @@
 import AuthButton from "@/components/AuthButton";
 
-export default async function Index() {
+export default function Index() {
   return (
     <section>
       <nav>
