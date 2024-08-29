@@ -1,5 +1,5 @@
+import AuthButton from "@components/AuthButton";
 import type { Meta, StoryObj } from "@storybook/react";
-import AuthButton from "@/components/AuthButton";
 
 export default {
   title: "AuthButton",

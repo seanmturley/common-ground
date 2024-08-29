@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@utils/supabase/server";
 
 const errorRedirect = "/login?message=Could not authenticate user";
 

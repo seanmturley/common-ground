@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { checkAuthorization } from "@/utils/auth/checkAuthorization";
-import { updateSession } from "@/utils/supabase/middleware";
+import { checkAuthorization } from "@utils/auth/checkAuthorization";
+import { updateSession } from "@utils/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
   const response = await updateSession(request);

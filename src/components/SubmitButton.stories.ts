@@ -1,5 +1,5 @@
+import SubmitButton from "@components/SubmitButton";
 import type { Meta, StoryObj } from "@storybook/react";
-import SubmitButton from "@/components/SubmitButton";
 
 export default {
   title: "SubmitButton",

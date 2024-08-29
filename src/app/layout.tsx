@@ -1,5 +1,5 @@
-import "./globals.css";
 import "/node_modules/modern-normalize/modern-normalize.css";
+import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`

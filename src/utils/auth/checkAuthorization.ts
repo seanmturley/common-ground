@@ -1,5 +1,5 @@
 import { type NextRequest } from "next/server";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@utils/supabase/server";
 
 export const checkAuthorization = async (request: NextRequest) => {
   const supabase = createClient();

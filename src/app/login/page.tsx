@@ -1,6 +1,6 @@
 import Link from "next/link";
-import SubmitButton from "@/components/SubmitButton";
-import { logIn, signUp } from "@/utils/auth/userActions";
+import SubmitButton from "@components/SubmitButton";
+import { logIn, signUp } from "@utils/auth/userActions";
 
 export default function Login({
   searchParams
