@@ -1,7 +1,7 @@
 import { type NextRequest } from "next/server";
 import { createClient } from "@utils/supabase/server";
 
-export const checkAuthorization = async (request: NextRequest) => {
+export async function checkAuthorization(request: NextRequest) {
   const supabase = createClient();
 
   const {
@@ -22,4 +22,4 @@ export const checkAuthorization = async (request: NextRequest) => {
   const requiresAuthorization = isProtectedRoute && !user;
 
   return requiresAuthorization;
-};
+}

@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-export const updateSession = async (request: NextRequest) => {
+export async function updateSession(request: NextRequest) {
   // Create an unmodified response
   let response = NextResponse.next({
     request: {
@@ -37,4 +37,4 @@ export const updateSession = async (request: NextRequest) => {
   await supabase.auth.getUser();
 
   return response;
-};
+}
