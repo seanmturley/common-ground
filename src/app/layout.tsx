@@ -1,5 +1,6 @@
 import "/node_modules/modern-normalize/modern-normalize.css";
 import "./globals.css";
+import NavBar from "@components/NavBar";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <NavBar />
         <main>{children}</main>
       </body>
     </html>
