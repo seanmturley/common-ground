@@ -1,5 +1,6 @@
 import "/node_modules/modern-normalize/modern-normalize.css";
 import "./globals.css";
+import styles from "./RootLayout.module.css";
 import NavBar from "@components/NavBar";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -21,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <NavBar />
-        <main>{children}</main>
+        <main className={styles.main}>{children}</main>
       </body>
     </html>
   );
