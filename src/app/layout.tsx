@@ -21,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NavBar />
+        <header>
+          <NavBar />
+        </header>
         <main className={styles.main}>{children}</main>
       </body>
     </html>

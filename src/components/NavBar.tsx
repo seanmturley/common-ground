@@ -5,31 +5,27 @@ import AuthButton from "@components/AuthButton";
 export default function NavBar() {
   return (
     <nav className={styles.nav}>
-      <div>
-        <div>LOGO</div>
-        <h1>
+      <div className={styles.logo}>
+        <div className={styles.logo__image}></div>
+        <h1 className={styles.logo__title}>
           <Link href="/">Common Ground</Link>
         </h1>
       </div>
 
-      <div>
-        <ul>
-          <li>
-            <Link href="/articles">Articles</Link>
-          </li>
-          <li>
-            <Link href="/rankings">Rankings</Link>
-          </li>
-        </ul>
-      </div>
+      <ul className={styles.content}>
+        <li>
+          <Link href="/articles">Articles</Link>
+        </li>
+        <li>
+          <Link href="/rankings">Rankings</Link>
+        </li>
+      </ul>
 
-      <div>
-        <AuthButton />
-      </div>
+      <AuthButton />
 
-      <div>
-        <Link href="/play">PLAY</Link>
-      </div>
+      <Link href="/play" className={styles.play}>
+        PLAY
+      </Link>
     </nav>
   );
 }

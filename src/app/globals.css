@@ -1,6 +1,21 @@
 :root {
   font-size: 62.5%;
-  --nav-bar-height: 4rem;
+
+  --nav-bar-height: 7rem;
+
+  --title-font__size: 2.2rem;
+  --title-font__line-height: 1.15;
+  --title-font: 400 var(--title-font__size) / var(--title-font__line-height)
+      "Work Sans",
+    sans-serif;
+
+  --body-font__size: 1.6rem;
+  --body-font__line-height: 1.5;
+  --body-font: 400 var(--body-font__size) / var(--body-font__line-height)
+      "Open Sans",
+    sans-serif;
+
+  --accent: hsl(120 39% 41%);
 }
 
 /* Default styling overrides */
