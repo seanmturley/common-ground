@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
 
+import "../src/app/globals.css";
+
 export default {
   parameters: {
     controls: {
