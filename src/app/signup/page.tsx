@@ -1,8 +1,8 @@
 import Link from "next/link";
 import SubmitButton from "@components/SubmitButton";
-import { logIn } from "@utils/auth/userActions";
+import { signUp } from "@utils/auth/userActions";
 
-export default function Login({
+export default function Signup({
   searchParams
 }: {
   searchParams: { message: string };
@@ -26,7 +26,7 @@ export default function Login({
         Back
       </Link>
 
-      <h1>Log in</h1>
+      <h1>Sign up</h1>
 
       <form>
         <label htmlFor="email">Email</label>
@@ -38,14 +38,13 @@ export default function Login({
           placeholder="••••••••"
           required
         />
-        <SubmitButton formAction={logIn} pendingText="Logging in...">
-          Log in
+        <SubmitButton formAction={signUp} pendingText="Signing up...">
+          Sign up
         </SubmitButton>
-
         {searchParams?.message && <p>{searchParams.message}</p>}
       </form>
       <div>
-        <Link href="/signup">Create account</Link>
+        Already have an account? <Link href="/login">Log in</Link>
       </div>
     </section>
   );

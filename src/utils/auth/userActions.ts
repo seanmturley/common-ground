@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { addServerClient } from "@utils/supabase/server";
 
-const errorRedirect = "/login?message=Could not authenticate user";
+const errorRedirect = "?message=Could not authenticate user";
 
 export async function signUp(formData: FormData) {
   "use server";
@@ -24,7 +24,7 @@ export async function signUp(formData: FormData) {
     return redirect(errorRedirect);
   }
 
-  return redirect("/login?message=Check email to continue sign in process");
+  return redirect("?message=Check email to continue sign in process");
 }
 
 export async function logIn(formData: FormData) {
