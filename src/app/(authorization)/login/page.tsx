@@ -1,17 +1,18 @@
 import Link from "next/link";
+import styles from "../Authorization.module.css";
 import SubmitButton from "@components/SubmitButton";
-import { signUp } from "@utils/auth/userActions";
+import { logIn } from "@utils/auth/userActions";
 
-export default function Signup({
+export default function Login({
   searchParams
 }: {
   searchParams: { message: string };
 }) {
   return (
-    <section>
-      <h1>Sign up</h1>
+    <>
+      <h1>Log in</h1>
 
-      <form>
+      <form className={styles.form}>
         <label htmlFor="email">Email</label>
         <input name="email" placeholder="you@example.com" required />
         <label htmlFor="password">Password</label>
@@ -21,14 +22,15 @@ export default function Signup({
           placeholder="••••••••"
           required
         />
-        <SubmitButton formAction={signUp} pendingText="Signing up...">
-          Sign up
+        <SubmitButton formAction={logIn} pendingText="Logging in...">
+          Log in
         </SubmitButton>
+
         {searchParams?.message && <p>{searchParams.message}</p>}
       </form>
       <div>
-        Already have an account? <Link href="/login">Log in</Link>
+        <Link href="/signup">Create account</Link>
       </div>
-    </section>
+    </>
   );
 }
