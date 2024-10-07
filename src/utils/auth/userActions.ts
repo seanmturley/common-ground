@@ -24,7 +24,7 @@ export async function signUp(formData: FormData) {
     return redirect(errorRedirect);
   }
 
-  return redirect("?message=Check email to continue sign in process");
+  return redirect("?message=Check email to continue sign up process");
 }
 
 export async function logIn(formData: FormData) {
@@ -32,6 +32,7 @@ export async function logIn(formData: FormData) {
 
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
+  const redirectPath = formData.get("redirectPath") as string;
   const supabase = addServerClient();
 
   const { error } = await supabase.auth.signInWithPassword({
@@ -43,7 +44,7 @@ export async function logIn(formData: FormData) {
     return redirect(errorRedirect);
   }
 
-  return redirect("/protected");
+  return redirect(redirectPath || "/");
 }
 
 export async function logOut() {

@@ -6,8 +6,12 @@ import { signUp } from "@utils/auth/userActions";
 export default function Signup({
   searchParams
 }: {
-  searchParams: { message: string };
+  searchParams: { message: string; redirectPath: string };
 }) {
+  const loginLink = searchParams?.redirectPath
+    ? `/login?redirectPath=${searchParams?.redirectPath}`
+    : "/login";
+
   return (
     <>
       <h1>Sign up</h1>
@@ -22,13 +26,19 @@ export default function Signup({
           placeholder="••••••••"
           required
         />
+        <input
+          type="hidden"
+          name="redirectPath"
+          value={searchParams?.redirectPath}
+        />
         <SubmitButton formAction={signUp} pendingText="Signing up...">
           Sign up
         </SubmitButton>
+
         {searchParams?.message && <p>{searchParams.message}</p>}
       </form>
       <div>
-        Already have an account? <Link href="/login">Log in</Link>
+        Already have an account? <Link href={loginLink}>Log in</Link>
       </div>
     </>
   );

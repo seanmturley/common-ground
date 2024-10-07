@@ -9,7 +9,12 @@ export async function middleware(request: NextRequest) {
   // If authorizationRequired, redirect to /login
   // Otherwise, pass on the initial request
   return authorizationRequired
-    ? NextResponse.redirect(new URL("/login", request.nextUrl))
+    ? NextResponse.redirect(
+        new URL(
+          `/login?redirectPath=${request.nextUrl.pathname}`,
+          request.nextUrl
+        )
+      )
     : response;
 }
 
