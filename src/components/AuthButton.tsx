@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { logOut } from "@utils/auth/userActions";
 import { addServerClient } from "@utils/supabase/server";
+import AuthLink from "@components/AuthLink";
 
 export default async function AuthButton() {
   const supabase = addServerClient();
@@ -17,6 +17,6 @@ export default async function AuthButton() {
       </form>
     </div>
   ) : (
-    <Link href="/login">Log in</Link>
+    <AuthLink linkPath="/login" />
   );
 }

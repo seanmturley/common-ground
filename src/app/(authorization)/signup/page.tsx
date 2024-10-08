@@ -1,5 +1,5 @@
-import Link from "next/link";
 import styles from "../Authorization.module.css";
+import AuthLink from "@components/AuthLink";
 import SubmitButton from "@components/SubmitButton";
 import { signUp } from "@utils/auth/userActions";
 
@@ -8,10 +8,6 @@ export default function Signup({
 }: {
   searchParams: { message: string; redirectPath: string };
 }) {
-  const loginLink = searchParams?.redirectPath
-    ? `/login?redirectPath=${searchParams?.redirectPath}`
-    : "/login";
-
   return (
     <>
       <h1>Sign up</h1>
@@ -38,7 +34,7 @@ export default function Signup({
         {searchParams?.message && <p>{searchParams.message}</p>}
       </form>
       <div>
-        Already have an account? <Link href={loginLink}>Log in</Link>
+        Already have an account? <AuthLink linkPath="/login" />
       </div>
     </>
   );
