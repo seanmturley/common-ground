@@ -1,16 +1,16 @@
 import styles from "../Authorization.module.css";
 import AuthLink from "@components/AuthLink";
 import SubmitButton from "@components/SubmitButton";
-import { signUp } from "@utils/auth/userActions";
+import { createAccount } from "@utils/auth/userActions";
 
-export default function Signup({
+export default function CreateAccount({
   searchParams
 }: {
   searchParams: { message: string; redirectPath: string };
 }) {
   return (
     <>
-      <h1>Sign up</h1>
+      <h1>Create account</h1>
 
       <form className={styles.form}>
         <label htmlFor="email">Email</label>
@@ -27,8 +27,11 @@ export default function Signup({
           name="redirectPath"
           value={searchParams?.redirectPath}
         />
-        <SubmitButton formAction={signUp} pendingText="Signing up...">
-          Sign up
+        <SubmitButton
+          formAction={createAccount}
+          pendingText="Creating account..."
+        >
+          Create account
         </SubmitButton>
 
         {searchParams?.message && <p>{searchParams.message}</p>}

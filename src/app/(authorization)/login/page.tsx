@@ -34,7 +34,7 @@ export default function Login({
         {searchParams?.message && <p>{searchParams.message}</p>}
       </form>
       <div>
-        <AuthLink linkPath="/signup" />
+        New here? <AuthLink linkPath="/create-account" />
       </div>
     </>
   );

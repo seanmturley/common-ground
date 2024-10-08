@@ -4,7 +4,7 @@ import { addServerClient } from "@utils/supabase/server";
 
 const errorRedirect = "?message=Could not authenticate user";
 
-export async function signUp(formData: FormData) {
+export async function createAccount(formData: FormData) {
   "use server";
 
   const origin = headers().get("origin");
@@ -24,7 +24,7 @@ export async function signUp(formData: FormData) {
     return redirect(errorRedirect);
   }
 
-  return redirect("?message=Check email to continue sign up process");
+  return redirect("?message=Check your email to finish creating your account");
 }
 
 export async function logIn(formData: FormData) {

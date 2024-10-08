@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
-const linkPaths = ["/login", "/signup"];
+const linkPaths = ["/login", "/create-account"];
 type LinkPaths = (typeof linkPaths)[number];
 
 export default function AuthLink({ linkPath }: { linkPath: LinkPaths }) {
