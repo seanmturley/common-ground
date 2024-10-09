@@ -3,22 +3,25 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
-const linkPaths = ["/login", "/create-account"];
-type LinkPaths = (typeof linkPaths)[number];
+const authPaths = ["/login", "/create-account"];
+type AuthPaths = (typeof authPaths)[number];
 
-export default function AuthLink({ linkPath }: { linkPath: LinkPaths }) {
+export default function AuthLink({ linkPath }: { linkPath: AuthPaths }) {
   const currentPathname = usePathname();
   const searchParams = useSearchParams();
 
-  const defaultRedirectPath = linkPaths.includes(currentPathname)
-    ? "/"
-    : currentPathname;
+  const redirectPathKey = "?redirectPath=";
+  const previousRedirectPath = searchParams.get("redirectPath");
 
-  const redirectPath = searchParams.get("redirectPath") || defaultRedirectPath;
+  let redirectQueryString = "";
+
+  if (previousRedirectPath) {
+    redirectQueryString = redirectPathKey + previousRedirectPath;
+  } else if (!authPaths.includes(currentPathname)) {
+    redirectQueryString = redirectPathKey + currentPathname;
+  }
 
   const linkText = linkPath === "/login" ? "Log in" : "Create account";
 
-  return (
-    <Link href={`${linkPath}?redirectPath=${redirectPath}`}>{linkText}</Link>
-  );
+  return <Link href={`${linkPath}${redirectQueryString}`}>{linkText}</Link>;
 }
