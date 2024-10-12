@@ -1,6 +1,4 @@
-import styles from "../Authorization.module.css";
-import AuthLink from "@components/AuthLink";
-import SubmitButton from "@components/SubmitButton";
+import AuthForm from "@components/AuthForm";
 import { logIn } from "@utils/auth/userActions";
 
 export default function Login({
@@ -8,34 +6,15 @@ export default function Login({
 }: {
   searchParams: { message: string; redirectPath: string };
 }) {
-  return (
-    <>
-      <h1>Log in</h1>
+  const form = {
+    name: "Log in",
+    formAction: logIn,
+    pedingText: "Logging in...",
+    authLinkQuestion: "New here?",
+    authLinkPath: "/create-account",
+    redirectPath: searchParams?.redirectPath,
+    message: searchParams?.message
+  };
 
-      <form className={styles.form}>
-        <label htmlFor="email">Email</label>
-        <input name="email" placeholder="you@example.com" required />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
-        <input
-          type="hidden"
-          name="redirectPath"
-          value={searchParams?.redirectPath}
-        />
-        <SubmitButton formAction={logIn} pendingText="Logging in...">
-          Log in
-        </SubmitButton>
-
-        {searchParams?.message && <p>{searchParams.message}</p>}
-      </form>
-      <div>
-        New here? <AuthLink linkPath="/create-account" />
-      </div>
-    </>
-  );
+  return <AuthForm {...form} />;
 }
