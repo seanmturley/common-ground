@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./AuthorizationLayout.module.css";
 
 export default function AuthorizationLayout({
@@ -8,7 +9,9 @@ export default function AuthorizationLayout({
   return (
     <main className={styles.main}>
       <section className={styles.card}>
-        <div>Logo</div>
+        <Link href="/">
+          <div>Logo</div>
+        </Link>
         {children}
       </section>
     </main>
