@@ -1,20 +1,13 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { checkAuthorization } from "@utils/auth/checkAuthorization";
+import { checkAuthentication } from "@utils/auth/checkAuthentication";
 import { updateSession } from "@utils/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
   const response = await updateSession(request);
-  const authorizationRequired = await checkAuthorization(request);
+  const [redirectRequired, redirectUrl] = await checkAuthentication(request);
 
-  // If authorizationRequired, redirect to /login
-  // Otherwise, pass on the initial request
-  return authorizationRequired
-    ? NextResponse.redirect(
-        new URL(
-          `/login?redirectPath=${request.nextUrl.pathname}`,
-          request.nextUrl
-        )
-      )
+  return redirectRequired
+    ? NextResponse.redirect(new URL(redirectUrl, request.nextUrl))
     : response;
 }
 
