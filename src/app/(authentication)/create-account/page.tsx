@@ -1,5 +1,5 @@
-import AuthForm from "@components/AuthForm";
-import { createAccount } from "@utils/auth/userActions";
+import AuthForm from "@components/auth-form";
+import { createAccount } from "@utils/auth/user-actions";
 
 export default function CreateAccount({
   searchParams

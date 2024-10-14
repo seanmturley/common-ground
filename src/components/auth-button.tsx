@@ -1,6 +1,6 @@
-import { logOut } from "@utils/auth/userActions";
+import { logOut } from "@utils/auth/user-actions";
 import { addServerClient } from "@utils/supabase/server";
-import AuthLink from "@components/AuthLink";
+import AuthLink from "@components/auth-link";
 
 export default async function AuthButton() {
   const supabase = addServerClient();

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./AuthorizationLayout.module.css";
+import styles from "./authentication-layout.module.css";
 
 export default function AuthorizationLayout({
   children

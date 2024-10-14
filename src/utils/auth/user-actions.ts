@@ -16,7 +16,7 @@ export async function createAccount(formData: FormData) {
     email,
     password,
     options: {
-      emailRedirectTo: `${origin}/api/authCallback`
+      emailRedirectTo: `${origin}/api/auth/confirm`
     }
   });
 

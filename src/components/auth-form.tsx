@@ -1,6 +1,6 @@
-import styles from "./AuthForm.module.css";
-import AuthLink from "@components/AuthLink";
-import SubmitButton from "@components/SubmitButton";
+import styles from "./auth-form.module.css";
+import AuthLink from "@components/auth-link";
+import SubmitButton from "@components/submit-button";
 
 type Form = {
   name: string;

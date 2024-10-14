@@ -1,4 +1,4 @@
-import AuthForm from "@components/AuthForm";
+import AuthForm from "@components/auth-form";
 import type { Meta, StoryObj } from "@storybook/react";
 
 export default {

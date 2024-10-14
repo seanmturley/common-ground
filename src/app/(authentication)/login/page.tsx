@@ -1,5 +1,5 @@
-import AuthForm from "@components/AuthForm";
-import { logIn } from "@utils/auth/userActions";
+import AuthForm from "@components/auth-form";
+import { logIn } from "@utils/auth/user-actions";
 
 export default function Login({
   searchParams

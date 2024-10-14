@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "./NavBar.module.css";
-import AuthButton from "@components/AuthButton";
+import styles from "./nav-bar.module.css";
+import AuthButton from "@components/auth-button";
 
 export default function NavBar() {
   return (

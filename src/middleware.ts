@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { checkAuthentication } from "@utils/auth/checkAuthentication";
+import { checkAuthentication } from "@utils/auth/check-authentication";
 import { updateSession } from "@utils/supabase/middleware";
 
 export async function middleware(request: NextRequest) {

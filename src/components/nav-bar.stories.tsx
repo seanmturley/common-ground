@@ -1,4 +1,4 @@
-import NavBar from "@components/NavBar";
+import NavBar from "@components/nav-bar";
 import type { Meta, StoryObj } from "@storybook/react";
 
 export default {

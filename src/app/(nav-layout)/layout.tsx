@@ -1,5 +1,5 @@
-import styles from "./NavLayout.module.css";
-import NavBar from "@components/NavBar";
+import styles from "./nav-layout.module.css";
+import NavBar from "@components/nav-bar";
 
 export default function NavLayout({ children }: { children: React.ReactNode }) {
   return (

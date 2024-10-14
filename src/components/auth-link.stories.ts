@@ -1,4 +1,4 @@
-import AuthLink from "@components/AuthLink";
+import AuthLink from "@components/auth-link";
 import type { Meta, StoryObj } from "@storybook/react";
 
 export default {

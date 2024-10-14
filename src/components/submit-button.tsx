@@ -2,7 +2,7 @@
 
 import { type ComponentProps } from "react";
 import { useFormStatus } from "react-dom";
-import styles from "./SubmitButton.module.css";
+import styles from "./submit-button.module.css";
 
 type Props = ComponentProps<"button"> & {
   pendingText?: string;

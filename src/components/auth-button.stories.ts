@@ -1,4 +1,4 @@
-import AuthButton from "@components/AuthButton";
+import AuthButton from "@components/auth-button";
 import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
