@@ -6,7 +6,7 @@ export default function CreateAccount({
 }: {
   searchParams: { message: string; redirectPath: string };
 }) {
-  const form = {
+  const createAccountForm = {
     name: "Create account",
     formAction: createAccount,
     pedingText: "Creating account...",
@@ -16,5 +16,5 @@ export default function CreateAccount({
     message: searchParams?.message
   };
 
-  return <AuthForm {...form} />;
+  return <AuthForm {...createAccountForm} />;
 }

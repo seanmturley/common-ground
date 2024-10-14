@@ -6,7 +6,7 @@ export default function Login({
 }: {
   searchParams: { message: string; redirectPath: string };
 }) {
-  const form = {
+  const loginForm = {
     name: "Log in",
     formAction: logIn,
     pedingText: "Logging in...",
@@ -16,5 +16,5 @@ export default function Login({
     message: searchParams?.message
   };
 
-  return <AuthForm {...form} />;
+  return <AuthForm {...loginForm} />;
 }
