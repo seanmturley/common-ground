@@ -8,9 +8,6 @@ export default {
     "@chromatic-com/storybook",
     "@storybook/addon-interactions"
   ],
-  docs: {
-    autodocs: true
-  },
   features: {
     experimentalRSC: true
   },

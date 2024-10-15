@@ -11,5 +11,7 @@ export default {
       }
     },
     layout: "centered"
-  }
+  },
+
+  tags: ["autodocs"]
 } satisfies Preview;
