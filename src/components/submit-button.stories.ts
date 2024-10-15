@@ -11,7 +11,13 @@ type Story = StoryObj<typeof SubmitButton>;
 export const LogIn: Story = {
   args: {
     children: "Log in",
-    pendingText: "Logging in...",
-    className: "log-in"
+    pendingText: "Logging in..."
+  }
+};
+
+export const CreateAccount: Story = {
+  args: {
+    children: "Create account",
+    pendingText: "Creating account..."
   }
 };
