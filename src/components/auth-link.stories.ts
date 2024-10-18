@@ -3,16 +3,23 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 export default {
   title: "AuthLink",
-  component: AuthLink
+  component: AuthLink,
+  argTypes: {
+    linkPath: {
+      description: "Defines the path for the link.",
+      control: "radio",
+      options: ["/login", "/create-account"]
+    }
+  }
 } satisfies Meta<typeof AuthLink>;
 
 type Story = StoryObj<typeof AuthLink>;
 
 export const AuthButtonLogIn: Story = {
+  name: '"Log in" link (in AuthButton)',
   args: {
     linkPath: "/login"
   },
-  name: '"Log in" link (in AuthButton)',
   parameters: {
     nextjs: {
       navigation: {
@@ -23,10 +30,10 @@ export const AuthButtonLogIn: Story = {
 };
 
 export const AuthFormLogIn: Story = {
+  name: '"Log in" link (in AuthForm)',
   args: {
     linkPath: "/login"
   },
-  name: '"Log in" link (in AuthForm)',
   parameters: {
     nextjs: {
       navigation: {
@@ -40,10 +47,10 @@ export const AuthFormLogIn: Story = {
 };
 
 export const AuthFormCreateAccount: Story = {
+  name: '"Create account" link (in AuthForm)',
   args: {
     linkPath: "/create-account"
   },
-  name: '"Create account" link (in AuthForm)',
   parameters: {
     nextjs: {
       navigation: {
