@@ -10,7 +10,10 @@ export default {
         date: /Date$/i
       }
     },
-    layout: "centered"
+    layout: "centered",
+    nextjs: {
+      appDirectory: true
+    }
   },
 
   tags: ["autodocs"]
