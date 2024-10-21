@@ -8,7 +8,12 @@ export default {
     linkPath: {
       description: "Defines the path for the link.",
       control: "radio",
-      options: ["/login", "/create-account"]
+      options: ["/login", "/create-account"],
+      table: {
+        type: {
+          summary: "/login | /create-account"
+        }
+      }
     }
   }
 } satisfies Meta<typeof AuthLink>;
