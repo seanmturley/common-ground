@@ -2,17 +2,7 @@ import styles from "./auth-form.module.css";
 import AuthLink from "@components/auth-link";
 import SubmitButton from "@components/submit-button";
 
-type Form = {
-  name: string;
-  formAction: (formData: FormData) => Promise<never>;
-  pedingText: string;
-  authLinkQuestion: string;
-  authLinkPath: string;
-  redirectPath: string;
-  message: string;
-};
-
-export default function AuthForm({ ...form }: Form) {
+export default function AuthForm({ ...form }: AuthForm) {
   return (
     <>
       <form className={styles.form}>
@@ -44,7 +34,7 @@ export default function AuthForm({ ...form }: Form) {
 
         <SubmitButton
           formAction={form.formAction}
-          pendingText={form.pedingText}
+          pendingText={form.pendingText}
         >
           {form.name}
         </SubmitButton>

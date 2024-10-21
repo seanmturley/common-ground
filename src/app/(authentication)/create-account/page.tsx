@@ -9,12 +9,12 @@ export default function CreateAccount({
   const createAccountForm = {
     name: "Create account",
     formAction: createAccount,
-    pedingText: "Creating account...",
+    pendingText: "Creating account...",
     authLinkQuestion: "Already have an account?",
     authLinkPath: "/login",
     redirectPath: searchParams?.redirectPath,
     message: searchParams?.message
-  };
+  } as AuthForm;
 
   return <AuthForm {...createAccountForm} />;
 }

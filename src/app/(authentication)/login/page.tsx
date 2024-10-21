@@ -9,12 +9,12 @@ export default function Login({
   const loginForm = {
     name: "Log in",
     formAction: logIn,
-    pedingText: "Logging in...",
+    pendingText: "Logging in...",
     authLinkQuestion: "New here?",
     authLinkPath: "/create-account",
     redirectPath: searchParams?.redirectPath,
     message: searchParams?.message
-  };
+  } as AuthForm;
 
   return <AuthForm {...loginForm} />;
 }
