@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const authPaths = ["/login", "/create-account"];
-type AuthPaths = (typeof authPaths)[number];
+type AuthPaths = "/login" | "/create-account";
 
 export default function AuthLink({ linkPath }: { linkPath: AuthPaths }) {
   const currentPathname = usePathname();
