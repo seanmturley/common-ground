@@ -39,7 +39,26 @@ export default {
       description:
         "A message to display to the user following an unsuccessful login attempt, or following the creation of a new account. This is read from the `message` search parameter in the URL."
     }
-  }
+  },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          boxSizing: "border-box",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          rowGap: "4rem",
+          width: "40rem",
+          padding: "4rem",
+          border: "1px solid black",
+          borderRadius: "0.5rem"
+        }}
+      >
+        <Story />
+      </div>
+    )
+  ]
 } satisfies Meta<typeof AuthForm>;
 
 type Story = StoryObj<typeof AuthForm>;
