@@ -54,27 +54,3 @@ export async function logOut() {
   await supabase.auth.signOut();
   return redirect("/");
 }
-
-export async function addAccountId(formData: FormData) {
-  "use server";
-
-  const accountId = formData.get("account-id") as string;
-  console.log(accountId);
-  // const supabase = addServerClient();
-
-  // Placeholder code below. Add the accountId to the database
-  // const { error } = await supabase.auth.signUp({
-  //   email,
-  //   password,
-  //   options: {
-  //     emailRedirectTo: `${origin}/api/auth/confirm`
-  //   }
-  // });
-
-  // if (error) {
-  //   return redirect(errorRedirect);
-  // }
-
-  // Arbitrary redirect as a placeholder
-  return redirect("/");
-}
