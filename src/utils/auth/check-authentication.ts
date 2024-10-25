@@ -4,7 +4,8 @@ import { addServerClient } from "@utils/supabase/server";
 export async function checkAuthentication(
   request: NextRequest
 ): Promise<[boolean, string]> {
-  const supabase = addServerClient();
+  const supabase = await addServerClient();
+
   const {
     data: { user }
   } = await supabase.auth.getUser();

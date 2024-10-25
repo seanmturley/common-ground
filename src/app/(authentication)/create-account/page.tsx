@@ -1,11 +1,13 @@
 import AuthForm from "@components/auth-form";
 import { createAccount } from "@utils/auth/user-actions";
 
-export default function CreateAccount({
+export default async function CreateAccount({
   searchParams
 }: {
   searchParams: { message: string; redirectPath: string };
 }) {
+  const { redirectPath, message } = await searchParams;
+
   const createAccountForm = {
     name: "Create account",
     formAction: createAccount,
@@ -13,8 +15,8 @@ export default function CreateAccount({
     pendingText: "Creating account...",
     authLinkQuestion: "Already have an account?",
     authLinkPath: "/login",
-    redirectPath: searchParams?.redirectPath,
-    message: searchParams?.message
+    redirectPath,
+    message
   } as AuthForm;
 
   return <AuthForm {...createAccountForm} />;

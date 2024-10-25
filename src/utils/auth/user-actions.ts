@@ -1,23 +1,22 @@
-import { headers } from "next/headers";
+"use server";
+
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { addServerClient } from "@utils/supabase/server";
 
-const errorRedirect = "?message=Could not authenticate user";
-
 export async function createAccount(formData: FormData) {
-  "use server";
+  const supabase = await addServerClient();
 
-  const origin = headers().get("origin");
+  // Type-casting here for convenience
+  // Ideally, the inputs should be validated
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
   const mtgaAccountId = formData.get("mtga-account-id") as string;
-  const supabase = addServerClient();
 
   const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      emailRedirectTo: `${origin}/api/auth/confirm`,
       data: {
         mtga_account_id: mtgaAccountId
       }
@@ -25,19 +24,21 @@ export async function createAccount(formData: FormData) {
   });
 
   if (error) {
-    return redirect(errorRedirect);
+    redirect("/error");
   }
 
-  return redirect("?message=Check your email to finish creating your account");
+  revalidatePath("/", "layout");
+  redirect("/confirm-email");
 }
 
 export async function logIn(formData: FormData) {
-  "use server";
+  const supabase = await addServerClient();
 
+  // Type-casting here for convenience
+  // Ideally, the inputs should be validated
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
   const redirectPath = formData.get("redirectPath") as string;
-  const supabase = addServerClient();
 
   const { error } = await supabase.auth.signInWithPassword({
     email,
@@ -45,16 +46,18 @@ export async function logIn(formData: FormData) {
   });
 
   if (error) {
-    return redirect(errorRedirect);
+    redirect("/error");
   }
 
-  return redirect(redirectPath || "/");
+  revalidatePath(redirectPath || "/", "layout");
+  redirect(redirectPath || "/");
 }
 
 export async function logOut() {
-  "use server";
+  const supabase = await addServerClient();
 
-  const supabase = addServerClient();
   await supabase.auth.signOut();
-  return redirect("/");
+
+  revalidatePath("/", "layout");
+  redirect("/");
 }
