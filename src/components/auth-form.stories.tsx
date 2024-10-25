@@ -67,6 +67,7 @@ export const LogIn: Story = {
   name: '"Log in" form',
   args: {
     name: "Log in",
+    requestMtgaAccountId: false,
     formAction: logIn,
     pendingText: "Logging in...",
     authLinkQuestion: "New here?",
@@ -88,6 +89,7 @@ export const CreateAccount: Story = {
   name: '"Create account" form',
   args: {
     name: "Create account",
+    requestMtgaAccountId: true,
     formAction: createAccount,
     pendingText: "Creating account...",
     authLinkQuestion: "Already have an account?",

@@ -30,6 +30,19 @@ export default function AuthForm({ ...form }: AuthForm) {
           />
         </div>
 
+        {form.requestMtgaAccountId && (
+          <div className={styles.form_field}>
+            <label htmlFor="mtga-account-id">MTG Arena account ID</label>
+            <input
+              className={styles.input}
+              name="mtga-account-id"
+              placeholder="DisplayName#12345"
+              type="text"
+              required
+            />
+          </div>
+        )}
+
         <input type="hidden" name="redirectPath" value={form.redirectPath} />
 
         <SubmitButton

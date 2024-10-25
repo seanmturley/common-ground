@@ -8,6 +8,7 @@ export default function Login({
 }) {
   const loginForm = {
     name: "Log in",
+    requestMtgaAccountId: false,
     formAction: logIn,
     pendingText: "Logging in...",
     authLinkQuestion: "New here?",

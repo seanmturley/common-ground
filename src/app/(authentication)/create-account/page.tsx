@@ -9,6 +9,7 @@ export default function CreateAccount({
   const createAccountForm = {
     name: "Create account",
     formAction: createAccount,
+    requestMtgaAccountId: true,
     pendingText: "Creating account...",
     authLinkQuestion: "Already have an account?",
     authLinkPath: "/login",
