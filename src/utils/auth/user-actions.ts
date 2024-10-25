@@ -10,13 +10,17 @@ export async function createAccount(formData: FormData) {
   const origin = headers().get("origin");
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
+  const mtgaAccountId = formData.get("mtga-account-id") as string;
   const supabase = addServerClient();
 
   const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      emailRedirectTo: `${origin}/api/auth/confirm`
+      emailRedirectTo: `${origin}/api/auth/confirm`,
+      data: {
+        mtga_account_id: mtgaAccountId
+      }
     }
   });
 
