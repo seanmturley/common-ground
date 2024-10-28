@@ -9,13 +9,14 @@ export const createAccount: FormAction = async function (prevState, formData) {
 
   // Type-casting here for convenience
   // Ideally, the inputs should be validated
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+  const userCredentials = {
+    email: formData.get("email") as string,
+    password: formData.get("password") as string
+  };
   const mtgaAccountId = formData.get("mtga-account-id") as string;
 
   const { error } = await supabase.auth.signUp({
-    email,
-    password,
+    ...userCredentials,
     options: {
       data: {
         mtga_account_id: mtgaAccountId
@@ -24,7 +25,12 @@ export const createAccount: FormAction = async function (prevState, formData) {
   });
 
   if (error) {
-    return "Could not create account.";
+    return {
+      ...prevState,
+      ...userCredentials,
+      message: "Could not create account.",
+      mtgaAccountId
+    };
   }
 
   revalidatePath("/", "layout");
@@ -36,17 +42,20 @@ export const logIn: FormAction = async function (prevState, formData) {
 
   // Type-casting here for convenience
   // Ideally, the inputs should be validated
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+  const userCredentials = {
+    email: formData.get("email") as string,
+    password: formData.get("password") as string
+  };
   const redirectPath = formData.get("redirectPath") as string;
 
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password
-  });
+  const { error } = await supabase.auth.signInWithPassword(userCredentials);
 
   if (error) {
-    return "Login information is incorrect.";
+    return {
+      ...prevState,
+      ...userCredentials,
+      message: "Login information is incorrect."
+    };
   }
 
   revalidatePath(redirectPath || "/", "layout");

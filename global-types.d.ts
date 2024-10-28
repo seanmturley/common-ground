@@ -1,7 +1,14 @@
+type FormState = {
+  email: string;
+  message: string;
+  mtgaAccountId: string;
+  password: string;
+};
+
 type FormAction = (
-  prevState: string,
+  prevState: FormState,
   formData: FormData
-) => Promise<string> | Promise<never>;
+) => Promise<FormState> | Promise<never>;
 
 type AuthForm = {
   name: string;

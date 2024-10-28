@@ -5,8 +5,18 @@ import styles from "./auth-form.module.css";
 import AuthLink from "@components/auth-link";
 import SubmitButton from "@components/submit-button";
 
+const initialFormState: FormState = {
+  email: "",
+  message: "",
+  mtgaAccountId: "",
+  password: ""
+};
+
 export default function AuthForm({ ...form }: AuthForm) {
-  const [errorMessage, formAction] = useActionState(form.formAction, "");
+  const [formState, formAction] = useActionState(
+    form.formAction,
+    initialFormState
+  );
 
   return (
     <>
@@ -17,6 +27,7 @@ export default function AuthForm({ ...form }: AuthForm) {
           <label htmlFor="email">Email</label>
           <input
             className={styles.input}
+            defaultValue={formState.email || ""}
             name="email"
             placeholder="you@example.com"
             type="email"
@@ -28,6 +39,7 @@ export default function AuthForm({ ...form }: AuthForm) {
           <label htmlFor="password">Password</label>
           <input
             className={styles.input}
+            defaultValue={formState.password || ""}
             name="password"
             placeholder="••••••••"
             type="password"
@@ -40,6 +52,7 @@ export default function AuthForm({ ...form }: AuthForm) {
             <label htmlFor="mtga-account-id">MTG Arena account ID</label>
             <input
               className={styles.input}
+              defaultValue={formState.mtgaAccountId || ""}
               name="mtga-account-id"
               placeholder="DisplayName#12345"
               type="text"
@@ -54,7 +67,9 @@ export default function AuthForm({ ...form }: AuthForm) {
           {form.name}
         </SubmitButton>
 
-        <div aria-live="polite">{errorMessage && <p>{errorMessage}</p>}</div>
+        <div aria-live="polite">
+          {formState.message && <p>{formState.message}</p>}
+        </div>
       </form>
 
       <div className={styles.auth_question}>
