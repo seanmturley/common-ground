@@ -1,8 +1,13 @@
+"use client";
+
+import { useActionState } from "react";
 import styles from "./auth-form.module.css";
 import AuthLink from "@components/auth-link";
 import SubmitButton from "@components/submit-button";
 
 export default function AuthForm({ ...form }: AuthForm) {
+  const [errorMessage, formAction] = useActionState(form.formAction, "");
+
   return (
     <>
       <form className={styles.form}>
@@ -45,14 +50,11 @@ export default function AuthForm({ ...form }: AuthForm) {
 
         <input type="hidden" name="redirectPath" value={form.redirectPath} />
 
-        <SubmitButton
-          formAction={form.formAction}
-          pendingText={form.pendingText}
-        >
+        <SubmitButton formAction={formAction} pendingText={form.pendingText}>
           {form.name}
         </SubmitButton>
 
-        {form.message && <p>{form.message}</p>}
+        <div aria-live="polite">{errorMessage && <p>{errorMessage}</p>}</div>
       </form>
 
       <div className={styles.auth_question}>

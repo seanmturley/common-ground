@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { addServerClient } from "@utils/supabase/server";
 
-export async function createAccount(formData: FormData) {
+export const createAccount: FormAction = async function (prevState, formData) {
   const supabase = await addServerClient();
 
   // Type-casting here for convenience
@@ -24,14 +24,14 @@ export async function createAccount(formData: FormData) {
   });
 
   if (error) {
-    redirect("/error");
+    return "Could not create account.";
   }
 
   revalidatePath("/", "layout");
   redirect("/confirm-email");
-}
+};
 
-export async function logIn(formData: FormData) {
+export const logIn: FormAction = async function (prevState, formData) {
   const supabase = await addServerClient();
 
   // Type-casting here for convenience
@@ -46,12 +46,12 @@ export async function logIn(formData: FormData) {
   });
 
   if (error) {
-    redirect("/error");
+    return "Login information is incorrect.";
   }
 
   revalidatePath(redirectPath || "/", "layout");
   redirect(redirectPath || "/");
-}
+};
 
 export async function logOut() {
   const supabase = await addServerClient();
