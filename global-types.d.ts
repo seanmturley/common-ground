@@ -1,15 +1,3 @@
-type FormState = {
-  email: string;
-  message: string;
-  mtgaAccountId: string;
-  password: string;
-};
-
-type FormAction = (
-  prevState: FormState,
-  formData: FormData
-) => Promise<FormState> | Promise<never>;
-
 type AuthForm = {
   name: string;
   requestMtgaAccountId: boolean;
@@ -19,4 +7,17 @@ type AuthForm = {
   authLinkPath: "/login" | "/create-account";
   redirectPath: string;
   message: string;
+};
+
+type FormAction = (
+  prevState: FormState,
+  formData: FormData
+) => Promise<FormState> | Promise<never>;
+
+type AuthFormState = {
+  checkInbox: boolean;
+  email: string;
+  message: string;
+  mtgaAccountId: string;
+  password: string;
 };

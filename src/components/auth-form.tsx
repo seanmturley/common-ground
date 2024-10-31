@@ -5,7 +5,8 @@ import styles from "./auth-form.module.css";
 import AuthLink from "@components/auth-link";
 import SubmitButton from "@components/submit-button";
 
-const initialFormState: FormState = {
+const initialFormState: AuthFormState = {
+  checkInbox: false,
   email: "",
   message: "",
   mtgaAccountId: "",
@@ -17,6 +18,14 @@ export default function AuthForm({ ...form }: AuthForm) {
     form.formAction,
     initialFormState
   );
+
+  if (formState.checkInbox) {
+    return (
+      <div aria-live="polite">
+        {formState.message && <p>{formState.message}</p>}
+      </div>
+    );
+  }
 
   return (
     <>

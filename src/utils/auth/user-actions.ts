@@ -33,8 +33,11 @@ export const createAccount: FormAction = async function (prevState, formData) {
     };
   }
 
-  revalidatePath("/", "layout");
-  redirect("/confirm-email");
+  return {
+    ...prevState,
+    checkInbox: true,
+    message: "Please check your inbox to confirm your email address"
+  };
 };
 
 export const logIn: FormAction = async function (prevState, formData) {
