@@ -6,7 +6,9 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.1",
