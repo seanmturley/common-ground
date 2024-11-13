@@ -16,7 +16,7 @@ export async function checkAuthentication(
 
   // Define protected routes
   // Descendent directories are also protected
-  const protectedRoutes = ["/protected"];
+  const protectedRoutes = ["/play", "/protected"];
 
   // Check if the URL path starts with a protected route
   const isProtectedRoute = protectedRoutes.some((protectedRoute) =>
