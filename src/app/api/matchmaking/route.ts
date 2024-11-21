@@ -1,11 +1,19 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { isValidUuid } from "@utils/general/is-valid-uuid";
+import {
+  isValidFormat,
+  isValidMatchType,
+  isValidUuid
+} from "@utils/general/data-validation";
 
 export async function POST(request: NextRequest) {
   try {
-    const { id } = await request.json();
+    const { id, format, match_type } = await request.json();
 
-    if (!id || !isValidUuid(id)) {
+    if (
+      !isValidUuid(id) ||
+      !isValidFormat(format) ||
+      !isValidMatchType(match_type)
+    ) {
       return NextResponse.json(
         { error: "Invalid input data" },
         { status: 400 }
@@ -20,7 +28,7 @@ export async function POST(request: NextRequest) {
           "Content-Type": "application/json",
           apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
         } as HeadersInit,
-        body: JSON.stringify({ id })
+        body: JSON.stringify({ id, format, match_type })
       }
     );
 
