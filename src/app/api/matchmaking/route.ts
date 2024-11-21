@@ -3,7 +3,7 @@ import {
   isValidFormat,
   isValidMatchType,
   isValidUuid
-} from "@utils/general/data-validation";
+} from "@utils/matchmaking/data-validation";
 
 export async function POST(request: NextRequest) {
   try {
