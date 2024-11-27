@@ -22,11 +22,14 @@ export const startMatchmaking: FormAction = async function (
     match_type: formData.get("match_type") as string
   };
 
-  const response = await fetch("/api/matchmaking", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...matchData, id })
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/matchmaking`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...matchData, id })
+    }
+  );
 
   const data = await response.json();
 
