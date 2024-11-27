@@ -1,18 +1,19 @@
 import { type NextRequest, NextResponse } from "next/server";
 import {
-  isValidFormat,
-  isValidMatchType,
+  // isValidFormat,
+  // isValidMatchType,
   isValidUuid
 } from "@utils/matchmaking/data-validation";
+import { addServerClient } from "@utils/supabase/server";
 
 export async function POST(request: NextRequest) {
   try {
-    const { id, format, match_type } = await request.json();
+    const { id /* , format, match_type */ } = await request.json();
 
     if (
-      !isValidUuid(id) ||
-      !isValidFormat(format) ||
-      !isValidMatchType(match_type)
+      !isValidUuid(id) // ||
+      // !isValidFormat(format) ||
+      // !isValidMatchType(match_type)
     ) {
       return NextResponse.json(
         { error: "Invalid input data" },
@@ -20,30 +21,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const response = await fetch(
-      `${process.env.SUPABASE_FUNCTIONS_URL}/matchmaking`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-        } as HeadersInit,
-        body: JSON.stringify({ id, format, match_type })
-      }
-    );
+    const supabase = await addServerClient();
 
-    const data = await response.json();
+    const { data, error } = await supabase
+      .from("matchmaking_queue")
+      .insert({ player_id: id /* , format, match_type */ });
 
-    if (response.ok) {
-      return NextResponse.json(data, { status: 200 });
+    if (error) {
+      return NextResponse.json(
+        { error: error.message || "Joining matchmaking queue failed" },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json(
-      { error: data.error || "Matchmaking failed" },
-      { status: response.status }
-    );
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    console.error("Error triggering Edge Function:", error);
+    console.error("Error joining the matchmaking queue:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
