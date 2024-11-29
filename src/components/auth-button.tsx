@@ -1,13 +1,11 @@
 import AuthLink from "@components/auth-link";
+import { getCurrentUser } from "@utils/auth/get-current-user";
 import { logOut } from "@utils/auth/user-actions";
 import { addServerClient } from "@utils/supabase/server";
 
 export default async function AuthButton() {
   const supabase = await addServerClient();
-
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
+  const { user } = await getCurrentUser(supabase);
 
   return user ? (
     <div>

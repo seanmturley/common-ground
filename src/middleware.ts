@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { checkAuthentication } from "@utils/auth/check-authentication";
+import { checkPageProtection } from "@utils/auth/check-page-protection";
 import { updateSession } from "@utils/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
   const response = await updateSession(request);
-  const [redirectRequired, redirectUrl] = await checkAuthentication(request);
+  const [redirectRequired, redirectUrl] = await checkPageProtection(request);
 
   return redirectRequired
     ? NextResponse.redirect(new URL(redirectUrl, request.nextUrl))

@@ -1,14 +1,12 @@
 import { type NextRequest } from "next/server";
+import { getCurrentUser } from "@utils/auth/get-current-user";
 import { addServerClient } from "@utils/supabase/server";
 
-export async function checkAuthentication(
+export async function checkPageProtection(
   request: NextRequest
 ): Promise<[boolean, string]> {
   const supabase = await addServerClient();
-
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
+  const { isAuthenticated } = await getCurrentUser(supabase);
 
   const path = request.nextUrl.pathname;
 
@@ -24,7 +22,7 @@ export async function checkAuthentication(
   );
 
   // Require authentication to access a protected route
-  const authenticationRequired = isProtectedRoute && !user;
+  const authenticationRequired = isProtectedRoute && !isAuthenticated;
   if (authenticationRequired)
     redirectUrl = `/login?redirectPath=${request.nextUrl.pathname}`;
 
@@ -34,7 +32,7 @@ export async function checkAuthentication(
   const isAuthRoute = authRoutes.some((authRoute) =>
     path.startsWith(authRoute)
   );
-  const preventReauthentication = isAuthRoute && Boolean(user);
+  const preventReauthentication = isAuthRoute && isAuthenticated;
   if (preventReauthentication) {
     redirectUrl = "/protected";
   }
