@@ -2,7 +2,7 @@ import { UUID } from "crypto";
 import { useEffect, useState } from "react";
 import { addBrowserClient } from "@utils/supabase/browser";
 
-export default async function useMatchSubscription() {
+export default async function useMatchmakingSubscription() {
   const [isMatched, setIsMatched] = useState(false);
 
   const supabase = addBrowserClient();
