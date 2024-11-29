@@ -14,7 +14,5 @@ export async function getCurrentUser(
     return { isAuthenticated: false, user: null };
   }
 
-  console.log(data.user);
-
   return { isAuthenticated: true, user: data.user };
 }
