@@ -1,13 +1,13 @@
 import type { User, SupabaseClient } from "@supabase/supabase-js";
 
-type GetCurrentUser = {
+type CurrentUser = {
   isAuthenticated: boolean;
   user: User | null;
 };
 
 export async function getCurrentUser(
   supabaseClient: SupabaseClient
-): Promise<GetCurrentUser> {
+): Promise<CurrentUser> {
   const { data, error } = await supabaseClient.auth.getUser();
 
   if (error || !data?.user) {
