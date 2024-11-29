@@ -17,14 +17,23 @@ type AuthFormState = {
   password: string;
 };
 
+type Format = "historic_pauper" | "historic_artisan";
+
 type FormAction = (
   prevState: FormState,
   formData: FormData
 ) => Promise<FormState> | Promise<never>;
 
+type MatchData = {
+  format: Format;
+  match_type: MatchType;
+};
+
+type MatchType = "Bo1" | "Bo3";
+
 type MatchmakingFormState = {
   buttonText: string;
-  format: "historic_pauper" | "historic_artisan";
-  match_type: "Bo1" | "Bo3";
+  format: Format;
+  match_type: MatchType;
   message: string;
 };
