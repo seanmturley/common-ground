@@ -20,7 +20,7 @@ export default function Play() {
     <form action={formAction}>
       <h1>Play</h1>
 
-      <fieldset>
+      {/* <fieldset>
         <legend>Best of:</legend>
 
         <div>
@@ -72,7 +72,7 @@ export default function Play() {
             disabled
           />
         </div>
-      </fieldset>
+      </fieldset> */}
 
       <button type="submit">{formState.buttonText}</button>
 

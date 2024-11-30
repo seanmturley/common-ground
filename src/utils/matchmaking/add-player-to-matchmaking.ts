@@ -24,16 +24,16 @@ export async function addPlayerToMatchmaking({
   const player_id = user?.id as UUID;
 
   if (
-    !isValidUuid(player_id) ||
-    !isValidFormat(format) ||
-    !isValidMatchType(match_type)
+    !isValidUuid(player_id) // ||
+    // !isValidFormat(format) ||
+    // !isValidMatchType(match_type)
   ) {
     return { message: "Invalid input data." };
   }
 
   const { error } = await supabase
     .from("matchmaking_queue")
-    .insert({ player_id, format, match_type });
+    .insert({ player_id /*, format, match_type */ });
 
   if (error) {
     console.log(`Error: ${error.message}`);
