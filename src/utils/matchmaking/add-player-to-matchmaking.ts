@@ -13,7 +13,7 @@ import { addServerClient } from "@utils/supabase/server";
 export async function addPlayerToMatchmaking({
   format,
   match_type
-}: MatchData): Promise<{ message: string }> {
+}: MatchData): Promise<{ message: string; success: boolean }> {
   const supabase = await addServerClient();
   const { isAuthenticated, user } = await getCurrentUser(supabase);
 
@@ -28,7 +28,7 @@ export async function addPlayerToMatchmaking({
     // !isValidFormat(format) ||
     // !isValidMatchType(match_type)
   ) {
-    return { message: "Invalid input data." };
+    return { message: "Invalid input data.", success: false };
   }
 
   const { error } = await supabase
@@ -37,8 +37,8 @@ export async function addPlayerToMatchmaking({
 
   if (error) {
     console.log(`Error: ${error.message}`);
-    return { message: "Error joining the matchmaking queue." };
+    return { message: "Error joining the matchmaking queue.", success: false };
   }
 
-  return { message: "Searching for an opponent..." };
+  return { message: "Searching for an opponent...", success: true };
 }

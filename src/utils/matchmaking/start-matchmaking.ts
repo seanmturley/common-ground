@@ -13,12 +13,12 @@ export const startMatchmaking: FormAction = async function (
     match_type: formData.get("match_type") as MatchType
   };
 
-  const { message } = await addPlayerToMatchmaking(matchData);
+  const { message, success } = await addPlayerToMatchmaking(matchData);
 
   return {
     ...prevState,
     ...matchData,
-    buttonText: "Cancel",
+    buttonText: success ? "Cancel" : prevState.buttonText,
     message
   };
 };
