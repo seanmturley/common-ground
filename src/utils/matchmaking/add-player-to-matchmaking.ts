@@ -36,7 +36,7 @@ export async function addPlayerToMatchmaking({
     .insert({ player_id, format, match_type });
 
   if (error) {
-    console.log(error.message);
+    console.log(`Error: ${error.message}`);
     return { message: "Error joining the matchmaking queue." };
   }
 
