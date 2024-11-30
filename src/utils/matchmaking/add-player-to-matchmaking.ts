@@ -17,12 +17,14 @@ export async function addPlayerToMatchmaking({
   const supabase = await addServerClient();
   const { isAuthenticated, user } = await getCurrentUser(supabase);
 
-  if (!isAuthenticated || !user) {
+  if (!isAuthenticated) {
     redirect("/login");
   }
 
+  const player_id = user?.id as UUID;
+
   if (
-    !isValidUuid(user.id as UUID) ||
+    !isValidUuid(player_id) ||
     !isValidFormat(format) ||
     !isValidMatchType(match_type)
   ) {
@@ -31,7 +33,7 @@ export async function addPlayerToMatchmaking({
 
   const { error } = await supabase
     .from("matchmaking_queue")
-    .insert({ player_id: user.id, format, match_type });
+    .insert({ player_id, format, match_type });
 
   if (error) {
     console.log(error.message);
