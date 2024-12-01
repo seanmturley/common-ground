@@ -1,18 +1,13 @@
 import { UUID } from "crypto";
-import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getCurrentUser } from "@utils/auth/get-current-user";
+import useGetCurrentUser from "@utils/auth/use-get-current-user";
 import { addBrowserClient } from "@utils/supabase/browser";
 
-export default async function useMatchmakingSubscription() {
+export default function useMatchmakingSubscription() {
   const [isMatched, setIsMatched] = useState(false);
 
   const supabase = addBrowserClient();
-  const { isAuthenticated, user } = await getCurrentUser(supabase);
-
-  if (!isAuthenticated) {
-    redirect("/login");
-  }
+  const { user } = useGetCurrentUser(supabase);
 
   const player_id = user?.id as UUID;
 
@@ -37,7 +32,7 @@ export default async function useMatchmakingSubscription() {
     return () => {
       supabase.removeChannel(subscription);
     };
-  });
+  }, [player_id, setIsMatched, supabase]);
 
   return isMatched;
 }
