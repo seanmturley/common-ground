@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { startMatchmaking } from "@utils/matchmaking/start-matchmaking";
+import useGetPlayerStatus from "@utils/matchmaking/use-get-player-status";
 
 const initialFormState: MatchmakingFormState = {
   buttonText: "Find match",
@@ -15,6 +16,9 @@ export default function Play() {
     startMatchmaking,
     initialFormState
   );
+
+  const playerStatus = useGetPlayerStatus();
+  console.log(`playerStatus: ${playerStatus}`);
 
   return (
     <form action={formAction}>
