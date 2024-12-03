@@ -1,9 +1,9 @@
 "use client";
 
 import { useActionState } from "react";
-import { startMatchmaking } from "@utils/matchmaking/start-matchmaking";
+import { joinQueueFormAction } from "@utils/matchmaking/join-queue-form-action";
 
-const initialFormState: MatchmakingFormState = {
+const initialFormState: JoinQueueFormState = {
   buttonText: "Find match",
   format: "historic_pauper",
   match_type: "Bo1",
@@ -12,7 +12,7 @@ const initialFormState: MatchmakingFormState = {
 
 export default function JoinQueueForm() {
   const [formState, formAction] = useActionState(
-    startMatchmaking,
+    joinQueueFormAction,
     initialFormState
   );
 

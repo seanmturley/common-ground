@@ -24,16 +24,16 @@ type FormAction = (
   formData: FormData
 ) => Promise<FormState> | Promise<never>;
 
+type JoinQueueFormState = {
+  buttonText: string;
+  format: Format;
+  match_type: MatchType;
+  message: string;
+};
+
 type MatchData = {
   format: Format;
   match_type: MatchType;
 };
 
 type MatchType = "Bo1" | "Bo3";
-
-type MatchmakingFormState = {
-  buttonText: string;
-  format: Format;
-  match_type: MatchType;
-  message: string;
-};

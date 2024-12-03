@@ -1,8 +1,8 @@
 "use server";
 
-import { addPlayerToMatchmaking } from "./add-player-to-matchmaking";
+import { addPlayerToQueue } from "@utils/matchmaking/add-player-to-queue";
 
-export const startMatchmaking: FormAction = async function (
+export const joinQueueFormAction: FormAction = async function (
   prevState,
   formData
 ) {
@@ -13,7 +13,7 @@ export const startMatchmaking: FormAction = async function (
     match_type: formData.get("match_type") as MatchType
   };
 
-  const { message, success } = await addPlayerToMatchmaking(matchData);
+  const { message, success } = await addPlayerToQueue(matchData);
 
   return {
     ...prevState,

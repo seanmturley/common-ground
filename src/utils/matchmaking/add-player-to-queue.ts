@@ -10,7 +10,7 @@ import {
 } from "@utils/matchmaking/data-validation";
 import { addServerClient } from "@utils/supabase/server";
 
-export async function addPlayerToMatchmaking({
+export const addPlayerToQueue = async function ({
   format,
   match_type
 }: MatchData): Promise<{ message: string; success: boolean }> {
@@ -32,7 +32,7 @@ export async function addPlayerToMatchmaking({
   }
 
   const { error } = await supabase
-    .from("matchmaking_queue")
+    .from("queue")
     .insert({ player_id /*, format, match_type */ });
 
   if (error) {
@@ -41,4 +41,4 @@ export async function addPlayerToMatchmaking({
   }
 
   return { message: "Searching for an opponent...", success: true };
-}
+};
