@@ -27,7 +27,7 @@ export default function useGetPlayerStatus() {
         }
       })();
     }
-  }, [player_id, setPlayerStatus, supabase]);
+  }, [player_id, supabase]);
 
   useEffect(() => {
     const playerStatusSubscription = supabase

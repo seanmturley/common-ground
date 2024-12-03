@@ -32,7 +32,7 @@ export default function useMatchmakingSubscription() {
     return () => {
       supabase.removeChannel(subscription);
     };
-  }, [player_id, setIsMatched, supabase]);
+  }, [player_id, supabase]);
 
   return isMatched;
 }
