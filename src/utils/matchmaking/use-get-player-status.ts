@@ -26,30 +26,28 @@ export default function useGetPlayerStatus() {
           setPlayerStatus(data.status);
         }
       })();
+
+      const playerStatusSubscription = supabase
+        .channel("player-status")
+        .on(
+          "postgres_changes",
+          {
+            event: "UPDATE",
+            schema: "public",
+            table: "players",
+            filter: `player_id=eq.${player_id}`
+          },
+          (payload) => {
+            setPlayerStatus(payload.new.status);
+          }
+        )
+        .subscribe();
+
+      return () => {
+        supabase.removeChannel(playerStatusSubscription);
+      };
     }
   }, [player_id, supabase]);
-
-  useEffect(() => {
-    const playerStatusSubscription = supabase
-      .channel("player-status")
-      .on(
-        "postgres_changes",
-        {
-          event: "UPDATE",
-          schema: "public",
-          table: "players",
-          filter: `player_id=eq.${player_id}`
-        },
-        (payload) => {
-          setPlayerStatus(payload.new.status);
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(playerStatusSubscription);
-    };
-  }, [player_id, setPlayerStatus, supabase]);
 
   return playerStatus;
 }
