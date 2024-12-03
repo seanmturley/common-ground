@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import useGetCurrentUser from "@utils/auth/use-get-current-user";
 import { addBrowserClient } from "@utils/supabase/browser";
 
+type PlayerStatus = "idle" | "in_queue" | "ready_check" | "in_match";
+
 export default function useGetPlayerStatus() {
-  const [playerStatus, setPlayerStatus] = useState(null);
+  const [playerStatus, setPlayerStatus] = useState<PlayerStatus | null>(null);
 
   const supabase = addBrowserClient();
   const { user } = useGetCurrentUser(supabase);
