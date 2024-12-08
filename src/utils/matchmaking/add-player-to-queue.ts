@@ -31,9 +31,11 @@ export const addPlayerToQueue = async function ({
     return { message: "Invalid input data.", success: false };
   }
 
-  const { error } = await supabase
-    .from("queue")
-    .insert({ player_id /*, format, match_type */ });
+  const { error } = await supabase.rpc("add_player_to_queue", {
+    current_player_id: player_id
+    // selected_format: format,
+    // selected_match_type: match_type
+  });
 
   if (error) {
     console.log(`Error: ${error.message}`);
