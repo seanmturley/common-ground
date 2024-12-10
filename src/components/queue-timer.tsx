@@ -15,6 +15,10 @@ export default function QueueTimer() {
         const currentTime = new Date().getTime();
 
         const elapsedMilliseconds = currentTime - timeJoinedQueue;
+
+        // Guard clause for negative time, which produces 59:59
+        if (elapsedMilliseconds < 0) return;
+
         const elapsedTimeFormatted = formatDuration(elapsedMilliseconds);
 
         setTimeElapsed(elapsedTimeFormatted);
