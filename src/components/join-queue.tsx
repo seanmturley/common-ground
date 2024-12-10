@@ -10,7 +10,7 @@ const initialJoinQueueState: JoinQueueState = {
 };
 
 export default function JoinQueue() {
-  const [joinQueueState, joinQueueAction] = useActionState(
+  const [joinQueueState, joinQueueAction, isPending] = useActionState(
     addPlayerToQueue,
     initialJoinQueueState
   );
@@ -73,7 +73,9 @@ export default function JoinQueue() {
         </div>
       </fieldset> */}
 
-      <button type="submit">Find match</button>
+      <button type="submit">
+        {isPending ? "Joining queue..." : "Find match"}
+      </button>
 
       <div aria-live="polite">
         {joinQueueState.message && <p>{joinQueueState.message}</p>}
