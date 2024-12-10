@@ -15,10 +15,7 @@ export default function InQueue() {
   );
   return (
     <>
-      <div>
-        <div>Searching...</div>
-        <QueueTimer />
-      </div>
+      <QueueTimer />
       <form action={cancelAction}>
         <button type="submit">{isPending ? "Cancelling..." : "Cancel"}</button>
         <div aria-live="polite">

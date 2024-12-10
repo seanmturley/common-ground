@@ -24,5 +24,12 @@ export default function QueueTimer() {
     }
   }, [timeJoinedQueue]);
 
-  return <div>{timeElapsed || "Please wait"}</div>;
+  return timeElapsed ? (
+    <>
+      <div>Searching...</div>
+      <div>{timeElapsed}</div>
+    </>
+  ) : (
+    <div>Joining queue...</div>
+  );
 }
