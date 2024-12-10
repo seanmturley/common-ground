@@ -2,6 +2,7 @@
 
 import { removePlayerFromQueue } from "@utils/matchmaking/remove-player-from-queue";
 import { useActionState } from "react";
+import QueueTimer from "./queue-timer";
 
 const initialCancelState = {
   message: ""
@@ -16,7 +17,7 @@ export default function InQueue() {
     <>
       <div>
         <div>Searching...</div>
-        <div>Timer</div>
+        <QueueTimer />
       </div>
       <form action={cancelAction}>
         <button type="submit">{isPending ? "Cancelling..." : "Cancel"}</button>
