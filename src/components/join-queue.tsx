@@ -1,23 +1,22 @@
 "use client";
 
 import { useActionState } from "react";
-import { joinQueueFormAction } from "@utils/matchmaking/join-queue-form-action";
+import { addPlayerToQueue } from "@utils/matchmaking/add-player-to-queue";
 
-const initialFormState: JoinQueueFormState = {
-  buttonText: "Find match",
+const initialJoinQueueState: JoinQueueState = {
   format: "historic_pauper",
   match_type: "Bo1",
   message: ""
 };
 
-export default function JoinQueueForm() {
-  const [formState, formAction] = useActionState(
-    joinQueueFormAction,
-    initialFormState
+export default function JoinQueue() {
+  const [joinQueueState, joinQueueAction] = useActionState(
+    addPlayerToQueue,
+    initialJoinQueueState
   );
 
   return (
-    <form action={formAction}>
+    <form action={joinQueueAction}>
       <h1>Play</h1>
 
       {/* <fieldset>
@@ -26,7 +25,7 @@ export default function JoinQueueForm() {
         <div>
           <label htmlFor="Bo1">1</label>
           <input
-            defaultChecked={formState.match_type === "Bo1"}
+            defaultChecked={joinQueueState.match_type === "Bo1"}
             id="Bo1"
             name="match_type"
             type="radio"
@@ -37,7 +36,7 @@ export default function JoinQueueForm() {
         <div>
           <label htmlFor="Bo3">3</label>
           <input
-            defaultChecked={formState.match_type === "Bo3"}
+            defaultChecked={joinQueueState.match_type === "Bo3"}
             id="Bo3"
             name="match_type"
             type="radio"
@@ -53,7 +52,7 @@ export default function JoinQueueForm() {
         <div>
           <label htmlFor="historic_pauper">Historic Pauper</label>
           <input
-            defaultChecked={formState.format === "historic_pauper"}
+            defaultChecked={joinQueueState.format === "historic_pauper"}
             id="historic_pauper"
             name="format"
             type="radio"
@@ -64,7 +63,7 @@ export default function JoinQueueForm() {
         <div>
           <label htmlFor="historic_artisan">Historic Artisan</label>
           <input
-            defaultChecked={formState.format === "historic_artisan"}
+            defaultChecked={joinQueueState.format === "historic_artisan"}
             id="historic_artisan"
             name="format"
             type="radio"
@@ -74,10 +73,10 @@ export default function JoinQueueForm() {
         </div>
       </fieldset> */}
 
-      <button type="submit">{formState.buttonText}</button>
+      <button type="submit">Find match</button>
 
       <div aria-live="polite">
-        {formState.message && <p>{formState.message}</p>}
+        {joinQueueState.message && <p>{joinQueueState.message}</p>}
       </div>
     </form>
   );

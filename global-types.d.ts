@@ -24,8 +24,7 @@ type FormAction = (
   formData: FormData
 ) => Promise<FormState> | Promise<never>;
 
-type JoinQueueFormState = {
-  buttonText: string;
+type JoinQueueState = {
   format: Format;
   match_type: MatchType;
   message: string;

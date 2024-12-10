@@ -1,7 +1,7 @@
 "use client";
 
 import useGetPlayerStatus from "@utils/matchmaking/use-get-player-status";
-import JoinQueueForm from "@components/join-queue-form";
+import JoinQueue from "@components/join-queue";
 import InQueueDisplay from "@components/in-queue-display";
 
 export default function Play(): React.JSX.Element {
@@ -18,7 +18,7 @@ export default function Play(): React.JSX.Element {
       return <h1>Loading...</h1>;
 
     case "idle":
-      return <JoinQueueForm />;
+      return <JoinQueue />;
 
     case "in_queue":
       return <InQueueDisplay />;

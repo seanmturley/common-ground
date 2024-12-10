@@ -1,4 +1,4 @@
-import "server-only";
+"use server";
 
 import type { UUID } from "crypto";
 import { redirect } from "next/navigation";
@@ -10,10 +10,10 @@ import {
 } from "@utils/matchmaking/data-validation";
 import { addServerClient } from "@utils/supabase/server";
 
-export const addPlayerToQueue = async function ({
-  format,
-  match_type
-}: MatchData): Promise<{ message: string; success: boolean }> {
+export const addPlayerToQueue: FormAction = async function (
+  prevState,
+  formData
+) {
   const supabase = await addServerClient();
   const { isAuthenticated, user } = await getCurrentUser(supabase);
 
@@ -22,13 +22,15 @@ export const addPlayerToQueue = async function ({
   }
 
   const player_id = user?.id as UUID;
+  // const format = formData.get("format") as Format;
+  // const match_type = formData.get("match_type") as MatchType;
 
   if (
     !isValidUuid(player_id) // ||
     // !isValidFormat(format) ||
     // !isValidMatchType(match_type)
   ) {
-    return { message: "Invalid input data.", success: false };
+    return { ...prevState, message: "Invalid input data." };
   }
 
   const { error } = await supabase.rpc("add_player_to_queue", {
@@ -39,8 +41,11 @@ export const addPlayerToQueue = async function ({
 
   if (error) {
     console.log(`Error: ${error.message}`);
-    return { message: "Error joining the matchmaking queue.", success: false };
+    return {
+      ...prevState,
+      message: "Error adding player to the matchmaking queue."
+    };
   }
 
-  return { message: "Searching for an opponent...", success: true };
+  return { ...prevState };
 };
