@@ -2,7 +2,7 @@
 
 import useGetPlayerStatus from "@utils/matchmaking/use-get-player-status";
 import JoinQueue from "@components/join-queue";
-import InQueueDisplay from "@components/in-queue-display";
+import InQueue from "@components/in-queue";
 
 export default function Play(): React.JSX.Element {
   // NOTE: Defining the return type for the component forces the
@@ -21,7 +21,7 @@ export default function Play(): React.JSX.Element {
       return <JoinQueue />;
 
     case "in_queue":
-      return <InQueueDisplay />;
+      return <InQueue />;
 
     case "ready_check":
       return <h1>Are you ready?</h1>;

@@ -7,7 +7,7 @@ const initialCancelState = {
   message: ""
 };
 
-export default function InQueueDisplay() {
+export default function InQueue() {
   const [cancelState, cancelAction, isPending] = useActionState(
     removePlayerFromQueue,
     initialCancelState
