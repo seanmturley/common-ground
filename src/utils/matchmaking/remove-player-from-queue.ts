@@ -23,17 +23,25 @@ export const removePlayerFromQueue: FormAction = async function (
     return { ...prevState, message: "Invalid player ID." };
   }
 
-  const { error } = await supabase.rpc("remove_player_from_queue", {
-    current_player_id: player_id
-  });
+  const { data, error } = await supabase
+    .rpc("remove_player_from_queue", {
+      current_player_id: player_id
+    })
+    .single();
 
   if (error) {
-    console.log(`Error: ${error.message}`);
+    console.log(`Error removing player from queue: ${error.message}`);
     return {
       ...prevState,
       message: "Error removing player from the matchmaking queue."
     };
   }
 
-  return { ...prevState };
+  const already_matched = data.already_matched;
+
+  return {
+    ...prevState,
+    already_matched,
+    message: already_matched ? "Already matched with an opponent." : ""
+  };
 };

@@ -5,6 +5,7 @@ import { useActionState } from "react";
 import QueueTimer from "./queue-timer";
 
 const initialCancelState = {
+  already_matched: false,
   message: ""
 };
 
@@ -17,7 +18,9 @@ export default function InQueue() {
     <>
       <QueueTimer />
       <form action={cancelAction}>
-        <button type="submit">{isPending ? "Cancelling..." : "Cancel"}</button>
+        <button type="submit" disabled={cancelState.already_matched}>
+          {isPending ? "Cancelling..." : "Cancel"}
+        </button>
         <div aria-live="polite">
           {cancelState.message && <p>{cancelState.message}</p>}
         </div>
