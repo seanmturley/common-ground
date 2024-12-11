@@ -40,7 +40,7 @@ export const addPlayerToQueue: FormAction = async function (
   });
 
   if (error) {
-    console.log(`Error: ${error.message}`);
+    console.error(`Error: ${error.message}`);
     return {
       ...prevState,
       message: "Error adding player to the matchmaking queue."

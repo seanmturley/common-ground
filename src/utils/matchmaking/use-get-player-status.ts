@@ -23,7 +23,7 @@ export default function useGetPlayerStatus() {
           .single();
 
         if (error) {
-          console.log(`Error getting player status: ${error.message}`);
+          console.error(`Error getting player status: ${error.message}`);
         } else {
           setPlayerStatus(data.status);
         }

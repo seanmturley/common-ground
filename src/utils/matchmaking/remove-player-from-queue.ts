@@ -30,7 +30,7 @@ export const removePlayerFromQueue: FormAction = async function (
     .single();
 
   if (error) {
-    console.log(`Error removing player from queue: ${error.message}`);
+    console.error(`Error removing player from queue: ${error.message}`);
     return {
       ...prevState,
       message: "Error removing player from the matchmaking queue."

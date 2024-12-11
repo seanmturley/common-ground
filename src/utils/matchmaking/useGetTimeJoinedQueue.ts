@@ -22,7 +22,7 @@ export function useGetTimeJoinedQueue() {
           .single();
 
         if (error) {
-          console.log(`Error getting time joined queue: ${error.message}`);
+          console.error(`Error getting time joined queue: ${error.message}`);
         } else {
           const timeJoined = new Date(data?.created_at).getTime();
           setTimeJoinedQueue(timeJoined);
