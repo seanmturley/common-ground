@@ -2,6 +2,7 @@
 
 import InQueue from "@components/in-queue";
 import JoinQueue from "@components/join-queue";
+import ReadyCheck from "@components/ready-check";
 import useGetPlayerStatus from "@utils/matchmaking/use-get-player-status";
 
 export default function Play(): React.JSX.Element {
@@ -24,7 +25,7 @@ export default function Play(): React.JSX.Element {
       return <InQueue />;
 
     case "ready_check":
-      return <h1>Are you ready?</h1>;
+      return <ReadyCheck />;
 
     case "in_match":
       return (
