@@ -1,8 +1,8 @@
 "use client";
 
-import useGetPlayerStatus from "@utils/matchmaking/use-get-player-status";
-import JoinQueue from "@components/join-queue";
 import InQueue from "@components/in-queue";
+import JoinQueue from "@components/join-queue";
+import useGetPlayerStatus from "@utils/matchmaking/use-get-player-status";
 
 export default function Play(): React.JSX.Element {
   // NOTE: Defining the return type for the component forces the

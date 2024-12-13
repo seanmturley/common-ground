@@ -1,8 +1,8 @@
 "use client";
 
-import { removePlayerFromQueue } from "@utils/matchmaking/remove-player-from-queue";
 import { useActionState } from "react";
-import QueueTimer from "./queue-timer";
+import QueueTimer from "@components/queue-timer";
+import { removePlayerFromQueue } from "@utils/matchmaking/remove-player-from-queue";
 
 const initialCancelState = {
   already_matched: false,
@@ -14,6 +14,7 @@ export default function InQueue() {
     removePlayerFromQueue,
     initialCancelState
   );
+
   return (
     <>
       <QueueTimer />
