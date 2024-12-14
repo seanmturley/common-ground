@@ -20,19 +20,17 @@ export const acceptMatch: FormAction = async function (prevState, formData) {
     return { ...prevState, message: "Invalid player ID." };
   }
 
-  // const { data, error } = await supabase
-  //   .rpc("remove_player_from_queue", {
-  //     current_player_id: player_id
-  //   })
-  //   .single();
+  const { error } = await supabase.rpc("accept_match", {
+    current_player_id: player_id
+  });
 
-  // if (error) {
-  //   console.error(`Error removing player from queue: ${error.message}`);
-  //   return {
-  //     ...prevState,
-  //     message: "Error removing player from the matchmaking queue."
-  //   };
-  // }
+  if (error) {
+    console.error(`Error accepting the match: ${error.message}`);
+    return {
+      ...prevState,
+      message: "Error accepting the match."
+    };
+  }
 
   return {
     ...prevState

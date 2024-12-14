@@ -34,6 +34,42 @@ export type Database = {
   };
   public: {
     Tables: {
+      matches: {
+        Row: {
+          created_at: string;
+          match_id: string;
+          player1_id: string;
+          player2_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          match_id?: string;
+          player1_id: string;
+          player2_id: string;
+        };
+        Update: {
+          created_at?: string;
+          match_id?: string;
+          player1_id?: string;
+          player2_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "matches_player1_id_fkey";
+            columns: ["player1_id"];
+            isOneToOne: false;
+            referencedRelation: "players";
+            referencedColumns: ["player_id"];
+          },
+          {
+            foreignKeyName: "matches_player2_id_fkey";
+            columns: ["player2_id"];
+            isOneToOne: false;
+            referencedRelation: "players";
+            referencedColumns: ["player_id"];
+          }
+        ];
+      };
       players: {
         Row: {
           mtga_account_id: string;
@@ -96,6 +132,12 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      accept_match: {
+        Args: {
+          current_player_id: string;
+        };
+        Returns: undefined;
+      };
       add_player_to_queue: {
         Args: {
           current_player_id: string;
