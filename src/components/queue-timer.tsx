@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useGetTimeJoinedQueue } from "@utils/matchmaking/useGetTimeJoinedQueue";
+import { useGetTimeJoinedQueue } from "@utils/matchmaking/use-get-time-joined-queue";
 import { formatDuration } from "@utils/matchmaking/format-duration";
 
 export default function QueueTimer() {
