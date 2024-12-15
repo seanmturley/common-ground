@@ -13,7 +13,7 @@ export function useGetPlayerDatum<
 }: {
   tableName: T;
   columnName: C;
-  initialValue: Datum<T, C>;
+  initialValue: Datum<T, C> | null;
 }) {
   const [playerDatum, setPlayerDatum] = useState(initialValue);
 
