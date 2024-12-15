@@ -5,7 +5,7 @@ import { formatDuration } from "@utils/matchmaking/format-duration";
 import { useGetPlayerDatum } from "@utils/matchmaking/use-get-player-datum";
 
 export default function QueueTimer() {
-  const [timeElapsed, setTimeElapsed] = useState("");
+  const [timeElapsed, setTimeElapsed] = useState(formatDuration(0));
 
   const timeJoinedQueue = useGetPlayerDatum({
     tableName: "queue",
