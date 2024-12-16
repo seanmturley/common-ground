@@ -1,4 +1,4 @@
-// IMPORTANT: Remove all "export" statements from this file
+// IMPORTANT: Remove all " statements from this file
 
 ///////////////
 // Custom types
@@ -113,23 +113,26 @@ type Database = {
       };
       queue: {
         Row: {
-          created_at: string;
           is_matched: boolean;
           is_ready: boolean;
+          joined_at: string;
+          matched_at: string | null;
           opponent_id: string | null;
           player_id: string;
         };
         Insert: {
-          created_at?: string;
           is_matched?: boolean;
           is_ready?: boolean;
+          joined_at?: string;
+          matched_at?: string | null;
           opponent_id?: string | null;
           player_id: string;
         };
         Update: {
-          created_at?: string;
           is_matched?: boolean;
           is_ready?: boolean;
+          joined_at?: string;
+          matched_at?: string | null;
           opponent_id?: string | null;
           player_id?: string;
         };

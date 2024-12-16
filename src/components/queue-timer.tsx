@@ -7,17 +7,18 @@ import useGetPlayerDatum from "@utils/matchmaking/use-get-player-datum";
 export default function QueueTimer() {
   const [timeElapsed, setTimeElapsed] = useState(formatDuration(0));
 
-  const timeJoinedQueue = useGetPlayerDatum({
+  const timeJoinedAt = useGetPlayerDatum({
     tableName: "queue",
-    columnName: "created_at",
+    columnName: "joined_at",
     initialValue: null
   });
 
   useEffect(() => {
-    if (timeJoinedQueue) {
+    if (timeJoinedAt) {
+      const timeJoined = new Date(timeJoinedAt).getTime();
+
       const elapsedTimeInterval = setInterval(() => {
         const currentTime = new Date().getTime();
-        const timeJoined = new Date(timeJoinedQueue).getTime();
 
         const elapsedMilliseconds = currentTime - timeJoined;
 
@@ -31,7 +32,7 @@ export default function QueueTimer() {
 
       return () => clearInterval(elapsedTimeInterval);
     }
-  }, [timeJoinedQueue]);
+  }, [timeJoinedAt]);
 
   return timeElapsed ? (
     <>
