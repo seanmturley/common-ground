@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import ReadyCheckCountdown from "@components/ready-check-countdown";
 import { acceptMatchAction } from "@utils/matchmaking/accept-match-action";
 import { removePlayerFromQueue } from "@utils/matchmaking/remove-player-from-queue";
+import { declineMatchAction } from "@utils/matchmaking/decline-match-action";
 
 const initialAcceptState = {
   message: ""
@@ -19,7 +20,7 @@ export default function ReadyCheck() {
     initialAcceptState
   );
   const [declineState, declineAction, declineIsPending] = useActionState(
-    removePlayerFromQueue,
+    declineMatchAction,
     initialDeclineState
   );
 
