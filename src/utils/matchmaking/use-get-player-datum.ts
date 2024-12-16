@@ -29,7 +29,6 @@ export default function useGetPlayerDatum<
           .from<T, RowDataStructure<T>>(tableName)
           .select<C>(columnName)
           .eq("player_id", player_id)
-          .limit(1)
           .single();
 
         if (error) {
