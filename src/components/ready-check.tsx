@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import ReadyCheckCountdown from "@components/ready-check-countdown";
 import { acceptMatch } from "@utils/matchmaking/accept-match";
 import { removePlayerFromQueue } from "@utils/matchmaking/remove-player-from-queue";
 
@@ -25,6 +26,7 @@ export default function ReadyCheck() {
   return (
     <form>
       <h1>Match found</h1>
+      <ReadyCheckCountdown />
       <button formAction={acceptAction} type="submit">
         Accept
       </button>
