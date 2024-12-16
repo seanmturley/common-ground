@@ -4,7 +4,7 @@ import useGetCurrentUser from "@utils/auth/use-get-current-user";
 import { useGetPlayerDatum } from "@utils/matchmaking/use-get-player-datum";
 import { addBrowserClient } from "@utils/supabase/browser";
 
-type PlayerStatus = "idle" | "in_queue" | "ready_check" | "in_match";
+type PlayerStatus = Database["public"]["Enums"]["player_status"];
 
 export default function usePlayerStatusSubscription() {
   const [playerStatus, setPlayerStatus] = useState<PlayerStatus | null>(null);
