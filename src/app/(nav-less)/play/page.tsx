@@ -3,7 +3,7 @@
 import InQueue from "@components/in-queue";
 import JoinQueue from "@components/join-queue";
 import ReadyCheck from "@components/ready-check";
-import useGetPlayerStatus from "@utils/matchmaking/use-get-player-status";
+import usePlayerStatusSubscription from "@utils/matchmaking/use-player-status-subscription";
 
 export default function Play(): React.JSX.Element {
   // NOTE: Defining the return type for the component forces the
@@ -12,7 +12,7 @@ export default function Play(): React.JSX.Element {
   // union type, as a React element will not be returned. For this
   // reason it is essential no default case exists for the switch.
 
-  const playerStatus = useGetPlayerStatus();
+  const playerStatus = usePlayerStatusSubscription();
 
   switch (playerStatus) {
     case null:
