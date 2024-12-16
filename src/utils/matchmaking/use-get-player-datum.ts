@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useGetCurrentUser from "@utils/auth/use-get-current-user";
 import { addBrowserClient } from "@utils/supabase/browser";
 
-export function useGetPlayerDatum<
+export default function useGetPlayerDatum<
   T extends TableName,
   C extends ColumnName<T>
 >({

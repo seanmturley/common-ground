@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { formatDuration } from "@utils/matchmaking/format-duration";
-import { useGetPlayerDatum } from "@utils/matchmaking/use-get-player-datum";
+import useGetPlayerDatum from "@utils/matchmaking/use-get-player-datum";
 
 export default function QueueTimer() {
   const [timeElapsed, setTimeElapsed] = useState(formatDuration(0));

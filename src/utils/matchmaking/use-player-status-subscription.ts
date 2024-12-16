@@ -1,7 +1,7 @@
 import { UUID } from "crypto";
 import { useEffect, useState } from "react";
 import useGetCurrentUser from "@utils/auth/use-get-current-user";
-import { useGetPlayerDatum } from "@utils/matchmaking/use-get-player-datum";
+import useGetPlayerDatum from "@utils/matchmaking/use-get-player-datum";
 import { addBrowserClient } from "@utils/supabase/browser";
 
 type PlayerStatus = Database["public"]["Enums"]["player_status"];
