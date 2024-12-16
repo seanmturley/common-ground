@@ -6,10 +6,11 @@ import { getCurrentUser } from "@utils/auth/get-current-user";
 import { isValidUuid } from "@utils/matchmaking/data-validation";
 import { addServerClient } from "@utils/supabase/server";
 
-export const removePlayerFromQueue: FormAction = async function (
-  prevState,
-  formData
-) {
+export const removePlayerFromQueue = async function ({
+  preserve_match
+}: {
+  preserve_match: boolean;
+}) {
   const supabase = await addServerClient();
   const { isAuthenticated, user } = await getCurrentUser(supabase);
 
@@ -17,31 +18,34 @@ export const removePlayerFromQueue: FormAction = async function (
     redirect("/login");
   }
 
-  const player_id = user?.id as UUID;
+  const current_player_id = user?.id as UUID;
 
-  if (!isValidUuid(player_id)) {
-    return { ...prevState, message: "Invalid player ID." };
+  if (!isValidUuid(current_player_id)) {
+    return { message: "Invalid player ID." };
   }
 
   const { data, error } = await supabase
     .rpc("remove_player_from_queue", {
-      current_player_id: player_id
+      current_player_id,
+      preserve_match
     })
     .single();
 
   if (error) {
     console.error(`Error removing player from queue: ${error.message}`);
     return {
-      ...prevState,
       message: "Error removing player from the matchmaking queue."
     };
   }
 
-  const already_matched = data.already_matched;
+  const already_matched: Database["public"]["Functions"]["remove_player_from_queue"]["Returns"][number]["already_matched"] =
+    data.already_matched;
 
   return {
-    ...prevState,
     already_matched,
-    message: already_matched ? "Already matched with an opponent." : ""
+    message:
+      preserve_match && already_matched
+        ? "Already matched with an opponent."
+        : ""
   };
 };

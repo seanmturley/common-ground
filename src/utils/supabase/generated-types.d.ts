@@ -1,5 +1,3 @@
-// IMPORTANT: Remove all " statements from this file
-
 ///////////////
 // Custom types
 ///////////////
@@ -21,6 +19,10 @@ type Datum<
 ////////////////////////////////
 // Generated types from Supabase
 ////////////////////////////////
+
+// IMPORTANT: Remove all `export` statements from the
+// generated types.
+
 type Json =
   | string
   | number
@@ -170,14 +172,24 @@ type Database = {
         };
         Returns: undefined;
       };
-      remove_player_from_queue: {
-        Args: {
-          current_player_id: string;
-        };
-        Returns: {
-          already_matched: boolean;
-        }[];
-      };
+      remove_player_from_queue:
+        | {
+            Args: {
+              current_player_id: string;
+            };
+            Returns: {
+              already_matched: boolean;
+            }[];
+          }
+        | {
+            Args: {
+              current_player_id: string;
+              preserve_match: boolean;
+            };
+            Returns: {
+              already_matched: boolean;
+            }[];
+          };
     };
     Enums: {
       player_status: "idle" | "in_queue" | "ready_check" | "in_match";

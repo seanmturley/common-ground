@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import QueueTimer from "@components/queue-timer";
-import { removePlayerFromQueue } from "@utils/matchmaking/remove-player-from-queue";
+import { cancelQueueAction } from "@utils/matchmaking/cancel-queue-action";
 
 const initialCancelState = {
   already_matched: false,
@@ -11,7 +11,7 @@ const initialCancelState = {
 
 export default function InQueue() {
   const [cancelState, cancelAction, isPending] = useActionState(
-    removePlayerFromQueue,
+    cancelQueueAction,
     initialCancelState
   );
 
