@@ -6,7 +6,10 @@ import { getCurrentUser } from "@utils/auth/get-current-user";
 import { isValidUuid } from "@utils/matchmaking/data-validation";
 import { addServerClient } from "@utils/supabase/server";
 
-export const acceptMatch: FormAction = async function (prevState, formData) {
+export const acceptMatchAction: FormAction = async function (
+  prevState,
+  formData
+) {
   const supabase = await addServerClient();
   const { isAuthenticated, user } = await getCurrentUser(supabase);
 
