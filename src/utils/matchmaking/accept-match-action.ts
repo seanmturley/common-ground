@@ -17,14 +17,17 @@ export const acceptMatchAction: FormAction = async function (
     redirect("/login");
   }
 
-  const player_id = user?.id as UUID;
+  const current_player_id = user?.id as UUID;
 
-  if (!isValidUuid(player_id)) {
-    return { ...prevState, message: "Invalid player ID." };
+  if (!isValidUuid(current_player_id)) {
+    return {
+      ...prevState,
+      message: "Invalid player ID."
+    };
   }
 
   const { error } = await supabase.rpc("accept_match", {
-    current_player_id: player_id
+    current_player_id
   });
 
   if (error) {
