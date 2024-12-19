@@ -27,7 +27,7 @@ export const declineMatchAction: FormAction = async function (
   }
 
   const { error } = await supabase
-    .rpc("decline_match", {
+    .rpc("remove_matched_player_from_queue", {
       current_player_id
     })
     .single();

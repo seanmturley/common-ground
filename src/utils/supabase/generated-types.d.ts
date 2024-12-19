@@ -160,17 +160,28 @@ type Database = {
       [_ in never]: never;
     };
     Functions: {
-      accept_match: {
-        Args: {
-          current_player_id: string;
-        };
-        Returns: undefined;
-      };
       add_player_to_queue: {
         Args: {
           current_player_id: string;
         };
         Returns: undefined;
+      };
+      get_opponent: {
+        Args: {
+          current_player_id: string;
+        };
+        Returns: {
+          player_id: string;
+          is_ready: boolean;
+        }[];
+      };
+      remove_matched_player_from_queue: {
+        Args: {
+          current_player_id: string;
+        };
+        Returns: {
+          already_matched: boolean;
+        }[];
       };
       remove_player_from_queue:
         | {
@@ -190,6 +201,12 @@ type Database = {
               already_matched: boolean;
             }[];
           };
+      set_player_as_ready: {
+        Args: {
+          current_player_id: string;
+        };
+        Returns: undefined;
+      };
     };
     Enums: {
       player_status: "idle" | "in_queue" | "ready_check" | "in_match";

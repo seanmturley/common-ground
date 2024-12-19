@@ -26,7 +26,7 @@ export const acceptMatchAction: FormAction = async function (
     };
   }
 
-  const { error } = await supabase.rpc("accept_match", {
+  const { error } = await supabase.rpc("set_player_as_ready", {
     current_player_id
   });
 
