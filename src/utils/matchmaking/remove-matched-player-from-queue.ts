@@ -6,11 +6,7 @@ import { getCurrentUser } from "@utils/auth/get-current-user";
 import { isValidUuid } from "@utils/matchmaking/data-validation";
 import { addServerClient } from "@utils/supabase/server";
 
-export const removePlayerFromQueue = async function ({
-  preserve_match
-}: {
-  preserve_match: boolean;
-}) {
+export const removeMatchedPlayerFromQueue = async function () {
   const supabase = await addServerClient();
   const { isAuthenticated, user } = await getCurrentUser(supabase);
 
@@ -24,28 +20,20 @@ export const removePlayerFromQueue = async function ({
     return { message: "Invalid player ID." };
   }
 
-  const { data, error } = await supabase
-    .rpc("remove_player_from_queue", {
-      current_player_id,
-      preserve_match
+  const { error } = await supabase
+    .rpc("remove_matched_player_from_queue", {
+      current_player_id
     })
     .single();
 
   if (error) {
-    console.error(`Error removing player from queue: ${error.message}`);
+    console.error(`Error declining the match: ${error.message}`);
     return {
-      message: "Error removing player from the matchmaking queue."
+      message: "Error declining the match."
     };
   }
 
-  const already_matched: Database["public"]["Functions"]["remove_player_from_queue"]["Returns"][number]["already_matched"] =
-    data.already_matched;
-
   return {
-    already_matched,
-    message:
-      preserve_match && already_matched
-        ? "Already matched with an opponent."
-        : null
+    message: null
   };
 };
