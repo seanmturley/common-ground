@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.form {
+  height: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.button {
+  display: block;
+  padding: 0.75rem 4rem;
+  border-radius: 0.5rem;
+  background-color: var(--accent);
+  font: var(--body-font);
+  text-align: center;
+}
+
+.button:disabled {
+  background-color: grey;
+  cursor: default;
+}

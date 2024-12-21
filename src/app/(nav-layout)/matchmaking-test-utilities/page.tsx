@@ -6,6 +6,7 @@ import {
   createTestUser,
   findIfExistingTestUser
 } from "@utils/matchmaking/test-utilities";
+import styles from "./matchmaking-test-utilities.module.css";
 
 const initialTestUser = {
   email: "opponent@domain.com",
@@ -16,7 +17,9 @@ const initialTestUser = {
 
 export default function MatchmakingTestUtilities() {
   const [testUser, setTestUser] = useState(initialTestUser);
-  const [testUserExists, setTestUserExists] = useState(false);
+  const [testUserExists, setTestUserExists] = useState<boolean | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     (async () => {
@@ -40,22 +43,33 @@ export default function MatchmakingTestUtilities() {
   };
 
   return (
-    <section>
-      <form>
-        <h1>Utility functions for testing matchmaking</h1>
+    <section className={styles.wrapper}>
+      <form className={styles.form}>
+        {testUserExists === undefined ? (
+          <h1>Loading...</h1>
+        ) : (
+          <>
+            <h1>Utility functions for testing matchmaking</h1>
 
-        <button
-          onClick={handleCreateTestUser}
-          type="submit"
-          disabled={testUserExists}
-        >
-          {testUserExists ? "Test user already exists" : "Create test user"}
-        </button>
+            <button
+              className={styles.button}
+              onClick={handleCreateTestUser}
+              type="submit"
+              disabled={testUserExists}
+            >
+              {testUserExists ? "Test user already exists" : "Create test user"}
+            </button>
 
-        {testUserExists && (
-          <button onClick={handleAddTestUserToQueue} type="submit">
-            Add test user to queue
-          </button>
+            {testUserExists && (
+              <button
+                className={styles.button}
+                onClick={handleAddTestUserToQueue}
+                type="submit"
+              >
+                Add test user to queue
+              </button>
+            )}
+          </>
         )}
       </form>
     </section>
