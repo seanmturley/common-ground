@@ -26,8 +26,8 @@ export default function useGetPlayerDatum<
     if (player_id) {
       (async () => {
         const { data, error } = await supabase
-          .from<T, RowDataStructure<T>>(tableName)
-          .select<C>(columnName)
+          .from(tableName)
+          .select(columnName)
           .eq("player_id", player_id)
           .single();
 
