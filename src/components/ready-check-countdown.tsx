@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { formatDuration } from "@utils/matchmaking/format-duration";
 import useGetPlayerDatum from "@utils/matchmaking/use-get-player-datum";
+import { removeMatchedPlayerFromQueue } from "@utils/matchmaking/remove-matched-player-from-queue";
 
 const readyCheckDuration = 30 * 1000;
 
@@ -26,6 +27,12 @@ export default function ReadyCheckCountdown() {
           timeMatched + readyCheckDuration - currentTime;
 
         setTimeRemaining(remainingMilliseconds);
+
+        if (remainingMilliseconds < 0) {
+          (async () => {
+            await removeMatchedPlayerFromQueue();
+          })();
+        }
       }, 1000);
 
       return () => clearInterval(timeRemainingInterval);
