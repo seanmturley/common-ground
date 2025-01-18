@@ -1,12 +1,12 @@
 "use server";
 
-import { removeMatchedPlayerFromQueue } from "@utils/matchmaking/remove-matched-player-from-queue";
+import { removePlayerFromQueue } from "@utils/matchmaking/remove-player-from-queue";
 
 export const declineMatchAction: FormAction = async function (
   prevState,
   formData
 ) {
-  const { message } = await removeMatchedPlayerFromQueue();
+  const { message } = await removePlayerFromQueue({ preserve_match: false });
 
   return {
     ...prevState,
